@@ -5,37 +5,64 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Challenge - DOM</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
-    <div id="app">
+    <div id="app" class="form-style">
       <!-- TODO: Buatlah sebuah header dengan id todo-title -->
-      <!-- TODO: Buatlah sebuah subtitle dengan id todo-subtitle -->
+      <h1 id="todo-title"><span>To-Do Lists</span></h3>
 
+      <!-- TODO: Buatlah sebuah subtitle dengan id todo-subtitle -->
+      <p id="todo-subtitle">~ Today I Need to ~</p>
       <!-- Section: input -->
       <!-- TODO: Buatlah sebuah input bertipe text dengan id todo-input -->
+      <input type="text" id="todo-input" placeholder="Todo list.."/>
+
       <!-- TODO: Buatlah sebuah button dengan id todo-submit -->
+      <input type="button" id="todo-submit" value="Submit"/>
 
       <!-- Section output -->
       <!-- TODO: Buatlah sebuah <ul> dengan id todo-output -->
+      <ul id="todo-output"></ul>
     </div>
 
     <!-- ! Untuk tantangan ini, script jangan diubah ke external js yah ! -->
     <script>
       // TODO: Deklarasi variable sesuai dengan kebutuhan di sini
-      let button;
-      let input;
-      let output;
+      let button = document.getElementById('todo-submit');
+      let input = document.getElementById('todo-input');
+      let output = document.getElementById('todo-output');
+      let valInput = '';
 
       // TODO: Buatlah sebuah fungsi dengan nama fnClickHandler
       // Fungsi yang digunakan untuk menambahkan tulisan
       // Jangan ubah cara deklarasi fungsinya, cukup isi saja
-      function fnClickHandler(toDoItem) {}
+      function fnClickHandler(toDoItem) {
+        const li = document.createElement('li');
+        const textValue = document.createTextNode(toDoItem);
+        li.appendChild(textValue);
+        const list = output.children;
+        output.append(li, ...list);
 
+        input.value = '';
+      }
+
+      function fnInputHandler(event){
+        if (event?.key === "Enter" || event?.keyCode === 13 || event?.which === 13) {
+          fnClickHandler(event.target.value);
+          event.preventDefault();
+        }else if(event?.type === "click"){
+          fnClickHandler(input.value);
+          event.preventDefault();
+        }
+      }
       // TODO: register event onclick / addEventListener untuk button
       // akan menjalankan fungsi fnClickHandler
+      button.addEventListener('click',fnInputHandler)
       
       // TODO: register event onkeypress / addEventListener untuk input
       // sehingga saat di input ditekan enter akan menjalankan fungsi fnClickHandler juga
+      input.addEventListener('keypress',fnInputHandler);
     </script>
   </body>
 </html>
