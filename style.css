@@ -37,7 +37,7 @@ body {
     background: #d2d9dd;
 }
 
-.form-style input[type="button"] {
+#todo-submit {
     position: relative;
     display: block;
     padding: 10px;
@@ -53,7 +53,7 @@ body {
     margin-bottom: 10px;
     border-radius: 8px;
 }
-.form-style input[type="button"]:hover {
+#todo-submit:hover {
     background: #109177;
 }
 
